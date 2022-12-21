@@ -6,7 +6,7 @@ mydb=mysql.connector.connect(host="localhost",user="root",passwd="123456",databa
 mycursor=mydb.cursor()
 mydb.autocommit=True
 
-table1='''create table Hotel(
+table1='''create table if not exists Hotel(
           H_ID VARCHAR(10) ,
           Place VARCHAR(20),
           Hotel_Name VARCHAR(30),
@@ -16,7 +16,7 @@ table1='''create table Hotel(
           H_Cost float)'''
 
 mycursor.execute(table1)
-table2='''create table transport(
+table2='''create table if not exists transport(
           T_ID VARCHAR(10) ,
           Destination VARCHAR(30),
           Place_of_origin VARCHAR(30),
@@ -27,7 +27,7 @@ table2='''create table transport(
 
 mycursor.execute(table2)
 
-table3='''create table Customer(
+table3='''create table if not exists Customer(
           Cust_ID integer  PRIMARY KEY AUTO_INCREMENT ,
           Name VARCHAR(20),
           H_ID VARCHAR(10),
@@ -40,7 +40,7 @@ table3='''create table Customer(
           )'''
 mycursor.execute(table3)
 
-table4='''create table Bill(
+table4='''create table if not exists Bill(
           cust_id INT references customer(Cust_ID),
           H_cost float,
           T_cost float
